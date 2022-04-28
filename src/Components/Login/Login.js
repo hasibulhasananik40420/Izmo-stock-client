@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 
@@ -17,9 +17,9 @@ const Login = () => {
         general: ""
     })
 
-    
-    const [signInWithEmailAndPassword,user,loading, hookError,] = useSignInWithEmailAndPassword(auth);
-
+    const [user, loading, error] = useAuthState(auth);
+    const [signInWithEmailAndPassword,user2,loading2, hookError,] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
         
      //handle  email
      const handleWithEmail=event=>{
@@ -56,6 +56,12 @@ const Login = () => {
              signInWithEmailAndPassword(userInfo.email , userInfo.password)
 
          }
+
+         //handle google
+         const handleWithGoogle =event=>{
+            signInWithGoogle(userInfo.email , userInfo.password)
+         }
+
         const naviagte= useNavigate()
          if(user){
             naviagte('/')
@@ -66,7 +72,7 @@ const Login = () => {
          <div className='flex-col shadow-lg p-6 mt-6'>
          <div>
               <h1 className='text-3xl font-bold mt-2'>Login</h1>
-              <p className=' font-semibold mt-2 mb-3 text-gray-700'>Doesn't have an account yet ? <Link to='/singup'>SingUp</Link> </p>
+              <p className=' font-semibold mt-2 mb-3 text-gray-700'>Doesn't have an account yet ? <Link className='text-red-400 font-semibold' to='/singup'>SingUp</Link> </p>
           </div>
            <div>
              <form onSubmit={handleLogin}>
@@ -84,7 +90,7 @@ const Login = () => {
                     {errors?.passwordErrors && <p className='text-red-400 font-semibold'>{errors.passwordErrors}</p>}
                  </div>
                  <div>
-                     <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl' type="submit" value="LOGIN" />
+                     <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="LOGIN" />
                  </div>
              </form>
              <div className='flex justify-evenly items-center mt-2'>
@@ -93,7 +99,7 @@ const Login = () => {
                     <div  className='border-b w-32 border-red-400'></div>
              </div>
               <div className='flex justify-between gap-3 mt-6 mb-2'>
-                  <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
+                  <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
                   <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
               </div>
               

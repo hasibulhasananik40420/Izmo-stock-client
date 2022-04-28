@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import auth from '../../Firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 const SingUp = () => {
     
@@ -16,9 +16,10 @@ const SingUp = () => {
          general: ""
      })
 
-     
-     const [createUserWithEmailAndPassword, user,loading,error,] = useCreateUserWithEmailAndPassword(auth);
-      
+     const [user, loading, error] = useAuthState(auth);
+     const [createUserWithEmailAndPassword, user2,loading2,error2,] = useCreateUserWithEmailAndPassword(auth);
+     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+
      //handle  email
      const handleWithEmail=event=>{
         const emailRegex = /\S+@\S+\.\S+/
@@ -70,6 +71,12 @@ const SingUp = () => {
          }
 
 
+         
+         //handle google
+         const handleWithGoogle =event=>{
+            signInWithGoogle(userInfo.email , userInfo.password)
+         }
+
          const naviagte= useNavigate()
          if(user){
             naviagte('/')
@@ -100,7 +107,7 @@ const SingUp = () => {
                     <input onChange={handleConfirmPassword} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="password" name="password" placeholder='Confirm Password' />
                 </div>
                  <div>
-                     <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm' type="submit" value="SING UP" />
+                     <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="SING UP" />
                  </div>
              </form>
              <div className='flex justify-evenly items-center mt-2'>
@@ -109,7 +116,7 @@ const SingUp = () => {
                     <div  className='border-b w-32 border-red-400'></div>
              </div>
               <div className='flex justify-between gap-3 mt-6 mb-2'>
-                  <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
+                  <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
                   <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
               </div>
               
