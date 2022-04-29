@@ -2,6 +2,7 @@ import React from 'react';
 import Cars from '../Cars/Cars';
 import Contact from '../Contact/Contact';
 import Header from '../Header/Header';
+import Products from '../Products/Products';
 import Services from '../Services/Services';
 
 const Home = () => {
@@ -9,7 +10,7 @@ const Home = () => {
         <div>
            
              <Header></Header>
-             {/* <Services></Services> */}
+            <Products></Products>
               <Cars></Cars>
               <Contact></Contact>
         </div>

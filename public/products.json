@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "ROOSTERS CLUB CUT",
+        "price": "100",
+        "description": "Personal consultation, precision haircut with shampoo massage and hot-towel treatment. Finishes with a style, a brush of powder at the neck and a splash of aftershave. Hope you love the service",
+        "quantity": "2",
+        "suppliername": "Hasibul Hasan",
+        "img": "https://t4.ftcdn.net/jpg/01/43/91/95/240_F_143919581_9p4uzzZJVYnd1FMCnI25awxYph5XpPWo.jpg"
+    },
+    {
+        "id": 2,
+        "name": "YOUNG MAN'S CUT",
+        "price": "70",
+        "description": "If you’re searching for the best young men’s haircuts, this collection of cool hairstyles is perfect for you. While styling some of these trendy hairstyles for young men may seem a little…",
+         "quantity": "3",
+         "suppliername": "Hasibul Hasan",
+        "img": "https://t4.ftcdn.net/jpg/01/83/31/49/240_F_183314935_7J5UoQSayBiNjoG6cYmZbSSr2wQdCzK9.jpg"
+    },
+    {
+        "id": 3,
+        "name": "BEARD TRIM",
+        "price": "150",
+        "description": "Bread trims We provide the master of the tonsorial arts who are not only highly skilled at cutting men's hair but also experts at men’s hair styling, beard trimming, and face shaves. We offer old-fashioned.",
+        "quantity": "1",
+        "suppliername": "Hasibul Hasan",
+        "img": "https://img.freepik.com/free-photo/young-bearded-man-hairdresser-salon_1163-2019.jpg?size=626&ext=jpg&ga=GA1.2.1166836568.1647150580"
+    },
+    {
+        "id": 4,
+        "name": "SENIUR HAIRCUT",
+        "price": "180",
+        "description": "Thinning hair, bald spots, and graying are all things senior men need to take into account when getting a haircut. Finding the right haircuts for seniors can make you feel like a million bucks.",
+        "quantity": "4",
+        "suppliername": "Hasibul Hasan",
+        "img": "https://t3.ftcdn.net/jpg/01/20/88/42/240_F_120884298_LMkqtyBLwgD514jbcyQtLA2L35uP2drE.jpg"
+    },
+    {
+        "id": 5,
+        "name": "MEDIUM LENGTH HAIR CUT",
+        "price": "100",
+        "description": "Medium length hairstyles for men are more popular than they’ve been in decades, thanks in part to the proliferation of choice cuts like pompadours and faux hawks. Of course, those are just two among.",
+        "quantity": "3",
+        "suppliername": "Hasibul Hasan",
+        "img": "https://img.freepik.com/free-photo/client-doing-hair-cut-barber-shop-salon_1303-20719.jpg?size=626&ext=jpg&ga=GA1.1.1166836568.1647150580"
+    },
+    {
+        "id": 6,
+        "name": "ELIT ADIPISCING",
+        "price": "245",
+        "description": "Our services are booked by sessions not services. This means your session includes everything your hair needs in the time frame you book. Each session is custom tailored to your exact hair needs.",
+        "quantity": "5",
+        "suppliername": "Hasibul Hasan",
+        "img": "https://t3.ftcdn.net/jpg/02/53/95/86/240_F_253958669_JxEbOaFIq6AKSfRDoIQ9nLCYkAwDrmk1.jpg"
+    }
+]
