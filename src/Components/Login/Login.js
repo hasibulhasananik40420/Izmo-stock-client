@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -62,10 +64,30 @@ const Login = () => {
             signInWithGoogle(userInfo.email , userInfo.password)
          }
 
+         //handle reset password
+         const [sendPasswordResetEmail, sending,] = useSendPasswordResetEmail( auth );
+         const handleResetPassword = async()=>{
+             const email = userInfo.email
+             if(email){
+                 await sendPasswordResetEmail(email)
+                 toast("Email Sent")
+             }
+             else{
+                 toast("Plese Enter Your Email")
+             }
+         }
+
+        
+
         const naviagte= useNavigate()
          if(user){
             naviagte('/')
          }
+
+        //  let errorElement ;
+        //  if(error){
+        //   const errorElement =  <p>Error : {error?.message}</p>
+        //  }
 
     return (
         <div className='flex justify-center items-center h-full'>
@@ -84,7 +106,7 @@ const Login = () => {
                 <div>
                    <div className='flex justify-between'>
                    <label htmlFor="password"> Enter Password</label>
-                   <button> Forget Password?</button>
+                   <button onClick={handleResetPassword}> Forget Password?</button>
                    </div>
                     <input onChange={handleWithPassword} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="password" name="password" placeholder='password' />
                     {errors?.passwordErrors && <p className='text-red-400 font-semibold'>{errors.passwordErrors}</p>}
@@ -92,7 +114,9 @@ const Login = () => {
                  <div>
                      <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="LOGIN" />
                  </div>
+                 {/* {errorElement} */}
              </form>
+             <ToastContainer />
              <div className='flex justify-evenly items-center mt-2'>
                      <div className='border-b w-32 border-red-400'></div>
                     <div className='text-center p-2 font-semibold'>Or login with </div>

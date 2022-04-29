@@ -17,7 +17,7 @@ const SingUp = () => {
      })
 
      const [user, loading, error] = useAuthState(auth);
-     const [createUserWithEmailAndPassword, user2,loading2,error2,] = useCreateUserWithEmailAndPassword(auth);
+     const [createUserWithEmailAndPassword, user2,loading2,error2,] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification: true});
      const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
      //handle  email
