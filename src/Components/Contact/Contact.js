@@ -2,11 +2,11 @@ import React from 'react';
 
 const Contact = () => {
     return (
-        <div className='md:flex md:justify-around bg-slate-700 md:py-8'>
+        <div className='md:flex md:justify-around bg-[#3d3d3d] md:py-8'>
             <div className='md:w-2/4 md:ml-8 ml-8'>
                 <h1 className='text-3xl text-white font-bold mt-8'>Newsletter</h1>
                 <p className='font-semibold mt-6 text-white'>By subscribing to our company newsletter you will always be up-to-date on our latest promotions, deals and vehicle inventory!</p>
-                 <input className='md:w-3/4 py-2 mt-4  border border-red-600' type="text" />
+                 <input className='md:w-3/4 py-2 mt-4  border border-red-800' type="text" />
                  <br />
                  <button className='px-8 py-2 bg-red-500 font-medium mt-4 rounded-md mb-12'> Subscribe</button>
             </div>

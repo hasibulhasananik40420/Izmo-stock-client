@@ -19,7 +19,7 @@ const Cars = () => {
             <div className='mt-8'>
                 <img className='w-full' src="https://demo.themesuite.com/automotive-wp/wp-content/uploads/2014/10/27-gtr-1-167x119.jpg" alt="" />
                  <div className='text-center bg-gray-300 p-3 hover:bg-red-500 hover:text-white hover:duration-500 ease-in-out'>
-                     <h1 className='font-semibold'>2016 Nissan GTW-R Nismo AWD</h1>
+                     <h1 className='font-semibold'>2016 Nisan GTW-R Nismo AWD</h1>
                      <p className=''>No owners, Brand new </p>
                      <p className=' font-semibold'> $55,900</p>
                  </div>
