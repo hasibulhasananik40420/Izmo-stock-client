@@ -6,7 +6,7 @@ const Services = ({product}) => {
 
        <div>
 
-            <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div className="mt-8 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
             
             <img className="p-8 rounded-t-lg" src="https://demo.themesuite.com/automotive-wp/wp-content/uploads/2014/09/portfolio4-lrg1-700x364.jpg" alt="" />
            

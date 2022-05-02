@@ -9,6 +9,10 @@ import NotFoundPage from './Components/NotFoundPage/NotFoundPage';
 import Footer from './Components/Footer/Footer';
 import Nav from './Components/Nav/Nav';
 import Blogs from './Components/Blogs/Blogs';
+import ManageItems from './Components/ManageItems/ManageItems';
+import AddItems from './Components/AddItems/AddItems';
+import MyItems from './Components/MyItems/MyItems';
+import ManageInventory from './Components/ManageInventory/ManageInventory';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/singup" element={<SingUp />} />
+        <Route path="/manageitem" element={<ManageItems />} />
+        <Route path="/additem" element={<AddItems />} />
+        <Route path="/myitem" element={<MyItems />} />
+        <Route path="/manageinventory" element={<ManageInventory />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
        <Footer></Footer>
