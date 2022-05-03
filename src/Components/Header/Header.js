@@ -22,7 +22,7 @@ const Header = () => {
         </div>
         <div class="carousel-item relative float-left w-full">
           <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+            src="https://marutisuzukiarenaprodcdn.azureedge.net/-/media/images/maruti/marutisuzuki/modules/generic-hero/covid-banner/mss_1300x600.webp?rev=7ce75923789f493493a34191114568df&extension=webp"
             class="block w-full"
             alt="Exotic Fruits"
           />

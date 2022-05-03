@@ -21,8 +21,8 @@ const Products = () => {
             }
             </div>
 
-              <div className='text-center mt-8'>
-              <Link to='/manageinventory' className='bg-red-500 px-8 py-2 font-semibold text-white rounded-sm'>Manage Inventories</Link>
+              <div className='text-center mt-14'>
+              <Link to='/manageinventory' className='bg-red-500 px-8 py-3 font-semibold text-white rounded-sm'>Manage Inventories</Link>
 
               </div>
        </div>

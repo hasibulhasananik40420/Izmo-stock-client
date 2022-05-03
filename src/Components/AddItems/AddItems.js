@@ -6,7 +6,7 @@ const AddItems = () => {
 
     return (
         <div className='w-2/4 mx-auto mt-8'>
-            {/* <h1>Add items</h1> */}
+           
 
             <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
                 <input className='border border-red-500 py-2 px-3' {...register("name", )} placeholder='name'/>
