@@ -9,12 +9,12 @@ const AddItems = () => {
            
 
             <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
-                <input className='border border-red-500 py-2 px-3' {...register("name", )} placeholder='name'/>
-                <input className='border border-red-500 py-2 px-3' {...register("description", )} placeholder='description'/>
-                <input className='border border-red-500 py-2 px-3' {...register("quantity", )} placeholder='quantity'/>
-                <input className='border border-red-500 py-2 px-3' {...register("suppliername", )} placeholder='suppliername'/>
-                <input className='border border-red-500 py-2 px-3' {...register("price", )} placeholder='price'/>
-                <input className='border border-red-500 py-2 px-3' type="text" {...register("img",)} placeholder='img' />
+                <input className='border border-red-500 py-2 px-3' {...register("name", )} placeholder='Name'/>
+                <input className='border border-red-500 py-2 px-3' {...register("description", )} placeholder='Description'/>
+                <input className='border border-red-500 py-2 px-3' {...register("quantity", )} placeholder='Quantity'/>
+                <input className='border border-red-500 py-2 px-3' {...register("suppliername", )} placeholder='Supplier Name'/>
+                <input className='border border-red-500 py-2 px-3' {...register("price", )} placeholder='Price'/>
+                <input className='border border-red-500 py-2 px-3' type="text" {...register("img",)} placeholder='Image Url' />
                 <input className='bg-red-500 py-2 font-semibold text-white cursor-pointer' type="submit" />
             </form>
         </div>

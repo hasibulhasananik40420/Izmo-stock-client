@@ -2,7 +2,9 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div>
+        <div className='w-3/4 items-center ml-7 mt-6'>
+         
+
             <div>
                 <h1 className='text-3xl text-blue-800'>1 ) Differences between sql and nosql databases ?</h1>
                 <p className='text-xl'> Ans :
@@ -29,18 +31,23 @@ const Blogs = () => {
 
             </div>
 
-             <div>
-                 <h1 className='text-3xl text-blue-800'> 3) Difference between javascript and nodejs ?</h1>
-                 <p>Ans :
-Javascript-
-a ) It is basically used on the client-side.
-b ) Javascript is used in frontend development.
-c ) SQL databases are best suited for complex queries.
-NodeJS-
-a ) It is mostly used on the server-side.
-b ) Nodejs is used in server-side development.
-c ) Nodejs does not have capability to add HTML tags.</p>
-             </div>
+            <div>
+                <h1 className='text-3xl text-blue-800'> 3) Difference between javascript and nodejs ?</h1>
+                <p>Ans :
+                    Javascript-
+                     <p> a ) It is basically used on the client-side.</p>
+                     <p>                    b ) Javascript is used in frontend development.</p>
+                     <p> c ) SQL databases are best suited for complex queries.</p>
+                     <p> NodeJS-</p>
+                     <p> a ) It is mostly used on the server-side.</p>
+                     <p> b ) Nodejs is used in server-side development.</p>
+                     <p> c ) Nodejs does not have capability to add HTML tags.</p></p>
+                   
+                   
+                   
+                   
+                   
+            </div>
         </div>
     );
 };

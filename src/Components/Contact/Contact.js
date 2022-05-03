@@ -6,9 +6,9 @@ const Contact = () => {
             <div className='md:w-2/4 md:ml-8 ml-8'>
                 <h1 className='text-3xl text-white font-bold mt-8'>Newsletter</h1>
                 <p className='font-semibold mt-6 text-white'>By subscribing to our company newsletter you will always be up-to-date on our latest promotions, deals and vehicle inventory!</p>
-                 <input className='md:w-3/4 py-2 mt-4  border border-red-800' type="text" />
+                 <input className='md:w-3/4 py-2 mt-4  border border-red-800' type="text" placeholder='abc@1.com'/>
                  <br />
-                 <button className='px-8 py-2 bg-red-500 font-medium mt-4 rounded-md mb-12'> Subscribe</button>
+                 <button className='px-8 py-2 bg-red-500 font-medium mt-4 rounded-md mb-12 text-white'> Subscribe</button>
             </div>
             <div className='md:w-3/4 md:ml-10 ml-8'>
                 <h1 className='text-3xl text-white font-bold mt-8'>Twitter Feed</h1>

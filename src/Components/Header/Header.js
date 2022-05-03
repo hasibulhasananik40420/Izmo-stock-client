@@ -8,7 +8,7 @@ const Header = () => {
       <div class="carousel-inner relative w-full overflow-hidden">
         <div class="carousel-item active relative float-left w-full">
           <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+            src="https://static.nissandime.com/permalink/v1/1/21911/document/22Altima_Offer_PFA_D.jpg?token=ssAf4CaN1ZNeR7AOViFT39pNggwXtm4tGlDbItcXXX9lBaRz7yzQwChyztrgAh03"
             class="block w-full"
             alt="Wild Landscape"
           />
