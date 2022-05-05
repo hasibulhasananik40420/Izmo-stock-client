@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import auth from '../../Firebase.init';
 import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import logo from '../../all-images/images/google-logo.png'
 const SingUp = () => {
     
      const [userInfo , setUserInfo] = useState({
@@ -16,9 +19,9 @@ const SingUp = () => {
          general: ""
      })
 
-     const [user, loading, error] = useAuthState(auth);
-     const [createUserWithEmailAndPassword, user2,loading2,error2,] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification: true});
-     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+     const [user] = useAuthState(auth);
+     const [createUserWithEmailAndPassword, user2,loading2,error,] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification: true});
+     const [signInWithGoogle,] = useSignInWithGoogle(auth);
 
      //handle  email
      const handleWithEmail=event=>{
@@ -69,8 +72,6 @@ const SingUp = () => {
              createUserWithEmailAndPassword(userInfo.email , userInfo.password ,userInfo.confirmPassword)
 
          }
-
-
          
          //handle google
          const handleWithGoogle =event=>{
@@ -78,11 +79,14 @@ const SingUp = () => {
          }
 
          const naviagte= useNavigate()
+         const location = useLocation()
+         const from = location.state?.from?.pathname || '/'
          if(user){
-            naviagte('/')
+            naviagte(from ,{replace:true})
          }
 
 
+       
     return (
         <div className='flex justify-center items-center h-full '>
            
@@ -109,14 +113,16 @@ const SingUp = () => {
                  <div>
                      <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="SING UP" />
                  </div>
+                  {/* {errorElement?.message} */}
              </form>
+             <ToastContainer />
              <div className='flex justify-evenly items-center mt-2'>
                      <div className='border-b w-32 border-red-400'></div>
                     <div className='text-center p-2 font-semibold'>Or login with </div>
                     <div  className='border-b w-32 border-red-400'></div>
              </div>
               <div className='flex justify-between gap-3 mt-6 mb-2'>
-                  <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
+                  <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'> <span className='flex items-center justify-center'> <img className='md:w-[25px] mr-4' src={logo} alt="" /> Google</span> </button>
                   <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
               </div>
               

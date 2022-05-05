@@ -14,22 +14,32 @@ import AddItems from './Components/AddItems/AddItems';
 import MyItems from './Components/MyItems/MyItems';
 import ManageInventory from './Components/ManageInventory/ManageInventory';
 import SingleService from './Components/SingleService/SingleService';
+import Navbar2 from './Components/Navbar2/Navbar2';
+import RequireAuth from './Components/RequireAuth/RequireAuth';
 
 function App() {
   return (
     <div>
       {/* <Navbar></Navbar> */}
-      <Nav></Nav>
+      {/* <Nav></Nav> */}
+       <Navbar2></Navbar2>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/singup" element={<SingUp />} />
-        <Route path="/singleservice/:id" element={<SingleService />} />
-        <Route path="/manageitem" element={<ManageItems />} />
-        <Route path="/additem" element={<AddItems />} />
-        <Route path="/myitem" element={<MyItems />} />
+        <Route path="/singleservice/:id" element={
+          <RequireAuth>
+            <SingleService />
+          </RequireAuth>
+        } />
+        <Route path="/additem" element={
+          <RequireAuth> <AddItems /></RequireAuth>
+        } />
+        <Route path="/myitem" element={
+          <RequireAuth><MyItems /></RequireAuth>
+        } />
         <Route path="/manageinventory" element={<ManageInventory />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

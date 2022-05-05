@@ -1,134 +1,168 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import logo from '../../all-images/images/google-logo.png'
+import Spinner from '../Spinner/Spinner';
 const Login = () => {
 
-    const [userInfo , setUserInfo] = useState({
+    const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
         confirmPassword: ""
     })
 
-    const [errors , setErrors] = useState({
+    const [errors, setErrors] = useState({
         emailErrors: "",
         passwordErrors: "",
         general: ""
     })
 
-    const [user, loading, error] = useAuthState(auth);
-    const [signInWithEmailAndPassword,user2,loading2, hookError,] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-        
-     //handle  email
-     const handleWithEmail=event=>{
+    const [user, loading] = useAuthState(auth);
+    const [signInWithEmailAndPassword,user2 , loading2, hookError,] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, user3, googleLoading, googleError] = useSignInWithGoogle(auth);
+
+    //handle  email
+    const handleWithEmail = event => {
         const emailRegex = /\S+@\S+\.\S+/
         const validEmail = emailRegex.test(event.target.value)
-        if(validEmail){
-            setUserInfo({...userInfo, email: event.target.value})
-            setErrors({...errors , emailErrors: ""})
+        if (validEmail) {
+            setUserInfo({ ...userInfo, email: event.target.value })
+            setErrors({ ...errors, emailErrors: "" })
         }
-        else{
-            setErrors({...errors , emailErrors: "Invalid Email Provied"})
-            setUserInfo({...userInfo , email:""})
+        else {
+            setErrors({ ...errors, emailErrors: "Invalid Email Provied" })
+            setUserInfo({ ...userInfo, email: "" })
         }
-      
-     }
-     
-        //handle password
-        const handleWithPassword= event =>{
-            const passwordRegex =   /.{6,}/;
-            const validPassword = passwordRegex.test(event.target.value)
-            if(validPassword){
-                setUserInfo({...userInfo , password: event.target.value})
-                setErrors({...errors , passwordErrors: ""})
+
+    }
+
+    //handle password
+    const handleWithPassword = event => {
+        const passwordRegex = /.{6,}/;
+        const validPassword = passwordRegex.test(event.target.value)
+        if (validPassword) {
+            setUserInfo({ ...userInfo, password: event.target.value })
+            setErrors({ ...errors, passwordErrors: "" })
+        }
+        else {
+            setErrors({ ...errors, passwordErrors: "Password must be 6 character's" })
+            setUserInfo({ ...userInfo, password: "" })
+        }
+    }
+
+    //login 
+    const handleLogin = event => {
+        event.preventDefault()
+        signInWithEmailAndPassword(userInfo.email, userInfo.password)
+
+    }
+
+    //handle google
+    const handleWithGoogle = event => {
+        signInWithGoogle(userInfo.email, userInfo.password)
+    }
+
+    //handle reset password
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+    const handleResetPassword = async () => {
+        const email = userInfo.email
+        if (email) {
+            await sendPasswordResetEmail(email)
+            toast("Email Sent")
+        }
+        else {
+            toast("Plese Enter Your Email")
+        }
+    }
+
+
+    const naviagte = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+    if (user) {
+        console.log(user);
+        //  const url ='http://localhost:5000/token'
+
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         email: user?.email
+        //     }),
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8',
+        //     },
+        // })
+        //     .then((response) => response.json())
+        //     .then((json) => console.log(json));
+
+        naviagte(from, { replace: true })
+    }
+
+
+    useEffect(() => {
+        const error = hookError || googleError
+        if (error) {
+            switch (error?.code) {
+                case "auth/invalid-email":
+                    toast("Invalid email provided !!");
+                    break;
+
+                case "auth/invalid-password":
+                    toast("Wrong password .Please provided rigth password")
+                    break;
+                default:
+                    toast("something went wrong !! Try again letter")
             }
-            else{
-                setErrors({...errors, passwordErrors: "Password must be 6 character's"})
-                setUserInfo({...userInfo, password:""})
-            }
         }
+    }, [hookError, googleError])
 
-         //login 
-         const handleLogin = event=>{
-             event.preventDefault()
-             signInWithEmailAndPassword(userInfo.email , userInfo.password)
-
-         }
-
-         //handle google
-         const handleWithGoogle =event=>{
-            signInWithGoogle(userInfo.email , userInfo.password)
-         }
-
-         //handle reset password
-         const [sendPasswordResetEmail, sending,] = useSendPasswordResetEmail( auth );
-         const handleResetPassword = async()=>{
-             const email = userInfo.email
-             if(email){
-                 await sendPasswordResetEmail(email)
-                 toast("Email Sent")
-             }
-             else{
-                 toast("Plese Enter Your Email")
-             }
-         }
-
-        
-
-        const naviagte= useNavigate()
-         if(user){
-            naviagte('/')
-         }
-
-        //  let errorElement ;
-        //  if(error){
-        //   const errorElement =  <p>Error : {error?.message}</p>
-        //  }
+    if (loading) {
+        return <Spinner></Spinner>
+    }
 
     return (
         <div className='flex justify-center items-center h-full'>
-         <div className='flex-col shadow-lg p-6 mt-6'>
-         <div>
-              <h1 className='text-3xl font-bold mt-2'>Login</h1>
-              <p className=' font-semibold mt-2 mb-3 text-gray-700'>Doesn't have an account yet ? <Link className='text-red-400 font-semibold' to='/singup'>SingUp</Link> </p>
-          </div>
-           <div>
-             <form onSubmit={handleLogin}>
-               <div>
-                <label  htmlFor="email">Email Address</label>
-               <input onChange={handleWithEmail} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="email" name="email" placeholder='Email'/>
-               {errors?.emailErrors && <p className='text-red-400 font-semibold'>{errors.emailErrors}</p>}
-               </div>
+            <div className='flex-col shadow-lg p-6 mt-6'>
                 <div>
-                   <div className='flex justify-between'>
-                   <label htmlFor="password"> Enter Password</label>
-                   <button onClick={handleResetPassword}> Forget Password?</button>
-                   </div>
-                    <input onChange={handleWithPassword} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="password" name="password" placeholder='password' />
-                    {errors?.passwordErrors && <p className='text-red-400 font-semibold'>{errors.passwordErrors}</p>}
-                 </div>
-                 <div>
-                     <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="LOGIN" />
-                 </div>
-                 {/* {errorElement} */}
-             </form>
-             <ToastContainer />
-             <div className='flex justify-evenly items-center mt-2'>
-                     <div className='border-b w-32 border-red-400'></div>
-                    <div className='text-center p-2 font-semibold'>Or login with </div>
-                    <div  className='border-b w-32 border-red-400'></div>
-             </div>
-              <div className='flex justify-between gap-3 mt-6 mb-2'>
-                  <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Google</button>
-                  <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
-              </div>
-              
-           </div>
-         </div>
+                    <h1 className='text-3xl font-bold mt-2'>Login</h1>
+                    <p className=' font-semibold mt-2 mb-3 text-gray-700'>Doesn't have an account yet ? <Link className='text-red-400 font-semibold' to='/singup'>SingUp</Link> </p>
+                </div>
+                <div>
+                    <form onSubmit={handleLogin}>
+                        <div>
+                            <label htmlFor="email">Email Address</label>
+                            <input onChange={handleWithEmail} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="email" name="email" placeholder='Email' />
+                            {errors?.emailErrors && <p className='text-red-400 font-semibold'>{errors.emailErrors}</p>}
+                        </div>
+                        <div>
+                            <div className='flex justify-between'>
+                                <label htmlFor="password"> Enter Password</label>
+                                <button onClick={handleResetPassword}> Forget Password?</button>
+                            </div>
+                            <input onChange={handleWithPassword} className='w-full py-3 pl-3 mb-6 mt-1 rounded-sm border border-red-400' type="password" name="password" placeholder='password' />
+                            {errors?.passwordErrors && <p className='text-red-400 font-semibold'>{errors.passwordErrors}</p>}
+                        </div>
+                        <div>
+                            <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="LOGIN" />
+                        </div>
+                        {loading}
+                    </form>
+                    <ToastContainer />
+                    <div className='flex justify-evenly items-center mt-2'>
+                        <div className='border-b w-32 border-red-400'></div>
+                        <div className='text-center p-2 font-semibold'>Or login with </div>
+                        <div className='border-b w-32 border-red-400'></div>
+                    </div>
+                    <div className='flex justify-between gap-3 mt-6 mb-2'>
+                        <button onClick={() => handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'> <span className='flex items-center justify-center'> <img className='md:w-[25px] mr-4' src={logo} alt="" /> Google</span>  </button>
+                        <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
     );
