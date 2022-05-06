@@ -20,8 +20,8 @@ const SingUp = () => {
      })
 
      const [user] = useAuthState(auth);
-     const [createUserWithEmailAndPassword, user2,loading2,error,] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification: true});
-     const [signInWithGoogle,] = useSignInWithGoogle(auth);
+     const [createUserWithEmailAndPassword, user2,loading2,error2] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification: true});
+     const [signInWithGoogle,user3,loading3,error3] = useSignInWithGoogle(auth);
 
      //handle  email
      const handleWithEmail=event=>{
@@ -84,7 +84,11 @@ const SingUp = () => {
          if(user){
             naviagte(from ,{replace:true})
          }
-
+        
+    //    let element = error2|| error3 
+    //    if(element){
+    //     //  toast('Error')
+    //    }
 
        
     return (
@@ -113,7 +117,7 @@ const SingUp = () => {
                  <div>
                      <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="SING UP" />
                  </div>
-                  {/* {errorElement?.message} */}
+                  {/* {element?.message} */}
              </form>
              <ToastContainer />
              <div className='flex justify-evenly items-center mt-2'>

@@ -30,7 +30,7 @@ const Services = () => {
 
      }
     return (
-       <div className='grid grid-cols-3'>
+       <div className='md:grid md:grid-cols-3'>
 
             {
                 review.map(product=> <div  key={product?._id}> 

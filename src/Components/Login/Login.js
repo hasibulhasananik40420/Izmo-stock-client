@@ -83,7 +83,7 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     if (user) {
-        console.log(user);
+        // console.log(user);
         //  const url ='http://localhost:5000/token'
 
         // fetch(url, {

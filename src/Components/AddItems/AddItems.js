@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../Firebase.init';
@@ -13,12 +12,11 @@ const AddItems = (e) => {
           email: user?.email,
           name: e.target.name.value,
           price: e.target.price.value,
-          price: e.target.price.value,
           description: e.target.description.value,
           quantity: e.target.quantity.value,
           suppliername: e.target.suppliername.value,
           img: e.target.img.value
-    
+           
         }
     
         const url = `http://localhost:5000/inventory`
@@ -43,7 +41,9 @@ const AddItems = (e) => {
 
     return (
         <div className='w-3/4 mx-auto mt-8'>
-           
+           <div>
+             <h1 className='md:text-3xl text-center mb-2 text-red-400'>Add Item</h1>
+           </div>
 
            <form onSubmit={additem} className='md:w-2/4 mx-auto p-2 mb-10'>
         <div className="form-group mb-6">
@@ -55,7 +55,7 @@ const AddItems = (e) => {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
-        border border-solid border-gray-300
+        border border-solid border-red-400
         rounded
         transition
         ease-in-out
@@ -74,7 +74,7 @@ const AddItems = (e) => {
           font-normal
           text-gray-700
           bg-white bg-clip-padding
-          border border-solid border-gray-300
+          border border-solid border-red-400
           rounded
           transition
           ease-in-out
@@ -83,7 +83,7 @@ const AddItems = (e) => {
               aria-describedby="emailHelp123" placeholder="Price" required />
           </div>
           <div className="form-group mb-6">
-            <input type="text" name='quantity' className="form-control
+            <input type="text" name='quantity' className="form-control 
           block
           w-full
           px-3
@@ -92,7 +92,7 @@ const AddItems = (e) => {
           font-normal
           text-gray-700
           bg-white bg-clip-padding
-          border border-solid border-gray-300
+          border border-solid border-red-400
           rounded
           transition
           ease-in-out
@@ -112,7 +112,7 @@ const AddItems = (e) => {
           font-normal
           text-gray-700
           bg-white bg-clip-padding
-          border border-solid border-gray-300
+          border border-solid border-red-400
           rounded
           transition
           ease-in-out
@@ -132,7 +132,7 @@ const AddItems = (e) => {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
-        border border-solid border-gray-300
+        border border-solid border-red-400
         rounded
         transition
         ease-in-out
@@ -149,7 +149,7 @@ const AddItems = (e) => {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
-        border border-solid border-gray-300
+        border border-solid border-red-400
         rounded
         transition
         ease-in-out
@@ -157,8 +157,8 @@ const AddItems = (e) => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
             placeholder="Image Url" required />
         </div>
-        <div className="form-group mb-6">
-          <textarea name="description" className='w-full h-24' placeholder='Description' required ></textarea>
+        <div className="form-group mb-6 ">
+          <textarea name="description" className='w-full h-24 border-red-400' placeholder='Description' required ></textarea>
         </div>
         <button type="submit" className="
       w-full

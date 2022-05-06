@@ -40,14 +40,14 @@ const MyItems = () => {
     return (
         <div>
             <h1 className='font-bold text-3xl mt-4 text-center'> My Items : {myItem?.length} </h1>
-             {/* <h1>{user?.email}</h1> */}
+            
 
              <div className="md:flex md:flex-col flex-row">
-    <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-      <div className="overflow-hidden">
-        <table className="min-w-full">
-          <thead className="border-b">
+             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+             <div className="overflow-hidden">
+             <table className="min-w-full">
+             <thead className="border-b">
             <tr>
              
               <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">

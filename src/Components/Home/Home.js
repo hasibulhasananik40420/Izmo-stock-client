@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useReview from '../../Hooks/useReview';
 import Cars from '../Cars/Cars';
@@ -13,6 +13,7 @@ const Home = () => {
        navigate(`/singleservice/${id}`)
     }
     const [review ,setReview] = useReview()
+    // const [loading, setLoading] = useState(false)
     const sixCart = review.slice(0,6)
     return (
         <div>
@@ -21,7 +22,8 @@ const Home = () => {
              <h1 className='text-3xl text-red-400 font-bold text-center mt-8'> Inventory</h1>
             
             {
-                review? <>
+                 <> 
+               
                 
                 <div className=' md:grid md:grid-cols-3 md:gap-8 md:ml-10 '>
              
@@ -47,7 +49,7 @@ const Home = () => {
               }
              </div>
                 
-                </>: <Spinner></Spinner>
+                </> 
             }
 
              <div className='text-center mt-14'>
