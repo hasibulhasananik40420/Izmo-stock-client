@@ -83,22 +83,25 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     if (user) {
-        // console.log(user);
-        //  const url ='http://localhost:5000/token'
+        //  const url ='https://polar-castle-21999.herokuapp.com/token'
+         const url ='http://localhost:5000/token'
 
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         email: user?.email
-        //     }),
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        // })
-        //     .then((response) => response.json())
-        //     .then((json) => console.log(json));
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: user?.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem('accessToken', data.token)
+                naviagte(from, { replace: true })
+            });
 
-        naviagte(from, { replace: true })
+       
     }
 
 
@@ -157,8 +160,8 @@ const Login = () => {
                         <div className='border-b w-32 border-red-400'></div>
                     </div>
                     <div className='flex justify-between gap-3 mt-6 mb-2'>
-                        <button onClick={() => handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'> <span className='flex items-center justify-center'> <img className='md:w-[25px] mr-4' src={logo} alt="" /> Google</span>  </button>
-                        <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
+                        <button onClick={() => handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'> <span className='flex items-center justify-center'> <img className='md:w-[25px] w-[20px] mr-4' src={logo} alt="" /> Google</span>  </button>
+                        <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'><span className='flex items-center justify-center'><img className='md:w-[30px] mr-4 w-[20px]' src="https://img.icons8.com/color/2x/facebook-circled--v4.gif" alt="" /> Facebook</span></button>
                     </div>
 
                 </div>

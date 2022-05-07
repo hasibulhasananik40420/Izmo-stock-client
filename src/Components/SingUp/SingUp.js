@@ -55,14 +55,17 @@ const SingUp = () => {
 
         //confirm passowrd
          const handleConfirmPassword= event=>{
+             console.log(event.target.value);
              if(event.target.value === userInfo.password){
-                 setUserInfo({...userInfo, confirmPassword: event.target.value})
+                 setUserInfo({...userInfo, confirmPassword:event.target.value})
                  setErrors({...errors, passwordErrors:""})
+                
              }
              else{
                  setErrors({...errors , passwordErrors: "Password din't match"})
                  setUserInfo({...userInfo , confirmPassword:""})
              }
+             
          }
          
 
@@ -85,10 +88,8 @@ const SingUp = () => {
             naviagte(from ,{replace:true})
          }
         
-    //    let element = error2|| error3 
-    //    if(element){
-    //     //  toast('Error')
-    //    }
+       let element = error2|| error3 
+    
 
        
     return (
@@ -117,7 +118,7 @@ const SingUp = () => {
                  <div>
                      <input className='w-full bg-red-500 text-center py-3 font-bold font-serif text-white text-1xl rounded-sm cursor-pointer' type="submit" value="SING UP" />
                  </div>
-                  {/* {element?.message} */}
+                 <p> {element?.message}</p>
              </form>
              <ToastContainer />
              <div className='flex justify-evenly items-center mt-2'>
@@ -127,7 +128,7 @@ const SingUp = () => {
              </div>
               <div className='flex justify-between gap-3 mt-6 mb-2'>
                   <button onClick={()=>handleWithGoogle()} className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'> <span className='flex items-center justify-center'> <img className='md:w-[25px] mr-4' src={logo} alt="" /> Google</span> </button>
-                  <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'>Facebook</button>
+                  <button className='w-2/4 py-2 px-3 border border-red-400 text-xl font-medium'><span className='flex items-center justify-center'><img className='md:w-[30px] mr-4 w-[20px]' src="https://img.icons8.com/color/2x/facebook-circled--v4.gif" alt="" /> Facebook</span></button>
               </div>
               
            </div>

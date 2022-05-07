@@ -9,7 +9,7 @@ const MyItems = () => {
 
         useEffect( ()=>{
             const email = user?.email
-            const url = `http://localhost:5000/myitems?email=${email}`
+            const url = `https://polar-castle-21999.herokuapp.com/myitems?email=${email}`
             fetch(url)
             .then(res=> res.json())
             .then(data=> {
@@ -22,7 +22,7 @@ const MyItems = () => {
           const handleDelete =(id)=>{
             const prceed = window.confirm('Are you sure to delete this item?')
             if(prceed){
-               const url =`http://localhost:5000/inventory/${id}`
+               const url =`https://polar-castle-21999.herokuapp.com/inventory/${id}`
                fetch(url,{
                    method:'DELETE'
                })

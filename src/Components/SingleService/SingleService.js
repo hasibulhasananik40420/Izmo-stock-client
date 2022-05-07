@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../Firebase.init';
 const SingleService = () => {
    
-
+    const [user] = useAuthState(auth)
     const {id} = useParams()
     const [review , setReview] = useState({})
      const {name , img , price ,quantity,suppliername, description  } = review
      useEffect( ()=>{
-         const url = `http://localhost:5000/inventory/${id}`
+         const url = `https://polar-castle-21999.herokuapp.com/inventory/${id}`
         fetch(url)
         .then(res => res.json())
         .then(data =>{
@@ -20,23 +22,28 @@ const SingleService = () => {
 
     const handleDelevired=(e)=>{
         e.preventDefault()
-        const newQuentity = parseInt(quantity -1 )
-        const item=  {name , img , price ,quantity:newQuentity, suppliername, description  }
-        setReview(item)
-        const url = `http://localhost:5000/inventory/${id}`
-        fetch(url, {
-            method: 'PUT',
-            headers:{
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(item)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            toast('Delevery done.')
-            e.target.reset()
-        })
+         if(quantity>=1){
+            const newQuentity = parseInt(quantity -1 )
+            const item=  {name , img , price ,quantity:newQuentity, suppliername, description  }
+            setReview(item)
+            const url = `https://polar-castle-21999.herokuapp.com/inventory/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify(item)
+            })
+            .then(res => res.json())
+            .then(data =>{
+                console.log(data);
+                toast('Delevery done.')
+                e.target.reset()
+            })
+         }
+        else{
+            toast('Sold Out')
+        }
     
       }
 
@@ -47,10 +54,11 @@ const SingleService = () => {
         const newQuentity = parseInt(quantity)+ parseInt( restokte)
         const item=  {name , img , price ,quantity:newQuentity, suppliername, description  }
         setReview(item)
-        const url = `http://localhost:5000/inventory/${id}`
+        const url = `https://polar-castle-21999.herokuapp.com/inventory/${id}`
         fetch(url, {
             method: 'PUT',
             headers:{
+                'authorization': `${user?.email}  ${localStorage.getItem('accessToken')}`,
                 'content-type':'application/json'
             },
             body: JSON.stringify(item)
@@ -77,7 +85,7 @@ const SingleService = () => {
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
                         <p className="mb-3 font-medium text-gray-700 dark:text-gray-400">Description : {description}</p>
                         <p className="mb-3 font-bold text-xl text-gray-700 dark:text-gray-400 ">Price : {price}</p>
-                        <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">Quantity : {quantity}</p>
+                        <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">Quantity : {quantity >=1? quantity : 'Sold Out'}</p>
                         <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">Supplier : {suppliername}</p>
                         <div><button onClick={handleDelevired} className='px-8 py-2 text-white font-bold bg-red-700 rounded-sm hover:bg-orange-700 hover:ease-in-out hover:duration-500'>Delivered</button></div>
                     </div>

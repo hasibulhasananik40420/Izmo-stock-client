@@ -19,7 +19,7 @@ const AddItems = (e) => {
            
         }
     
-        const url = `http://localhost:5000/inventory`
+        const url = `https://polar-castle-21999.herokuapp.com/inventory`
         fetch(url,{
             method: 'POST',
             headers: {

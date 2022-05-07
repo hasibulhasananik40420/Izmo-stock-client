@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useReview from '../../Hooks/useReview';
+import Spinner from '../Spinner/Spinner';
 
 const Services = () => {
     const [review ,setReview] = useReview([])
@@ -15,7 +16,7 @@ const Services = () => {
      const handleDelete =(id)=>{
          const prceed = window.confirm('Are you sure to delete this item?')
          if(prceed){
-            const url =`http://localhost:5000/inventory/${id}`
+            const url =`https://polar-castle-21999.herokuapp.com/inventory/${id}`
             fetch(url,{
                 method:'DELETE'
             })
@@ -32,7 +33,9 @@ const Services = () => {
     return (
        <div className='md:grid md:grid-cols-3'>
 
-            {
+       <>
+       
+       {
                 review.map(product=> <div  key={product?._id}> 
 
              <div className="mt-8 max-w-sm bg-white rounded-lg shadow-lg hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700">
@@ -58,6 +61,8 @@ const Services = () => {
                    
                     )
             }
+       
+       </>
  
        </div>
     );
