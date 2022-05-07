@@ -56,13 +56,53 @@ const Login = () => {
     //login 
     const handleLogin = event => {
         event.preventDefault()
-        signInWithEmailAndPassword(userInfo.email, userInfo.password)
+        
+
+        fetch('https://polar-castle-21999.herokuapp.com/token', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: user?.email 
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.success){
+                localStorage.setItem('accessToken', data.accessToken);
+                signInWithEmailAndPassword(userInfo.email, userInfo.password)
+                naviagte(from, { replace: true })
+
+            }
+            console.log(data);
+        })
 
     }
 
     //handle google
     const handleWithGoogle = event => {
-        signInWithGoogle(userInfo.email, userInfo.password)
+        fetch('https://polar-castle-21999.herokuapp.com/token', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: user?.email 
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.success){
+                localStorage.setItem('accessToken', data.accessToken);
+                // signInWithEmailAndPassword(userInfo.email, userInfo.password)
+                signInWithGoogle(userInfo.email, userInfo.password)
+
+                naviagte(from, { replace: true })
+
+            }
+            console.log(data);
+        })
     }
 
     //handle reset password
@@ -83,25 +123,7 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     if (user) {
-        //  const url ='https://polar-castle-21999.herokuapp.com/token'
-         const url ='http://localhost:5000/token'
-
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                email: user?.email
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                localStorage.setItem('accessToken', data.token)
-                naviagte(from, { replace: true })
-            });
-
-       
+     naviagte(from, { replace: true })
     }
 
 

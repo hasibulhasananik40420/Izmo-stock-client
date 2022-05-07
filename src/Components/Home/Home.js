@@ -13,13 +13,13 @@ const Home = () => {
        navigate(`/singleservice/${id}`)
     }
     const [review ,setReview] = useReview()
-    // const [loading, setLoading] = useState(false)
     const sixCart = review.slice(0,6)
     return (
         <div>
            
              <Header></Header>
-             <h1 className='text-3xl text-red-400 font-bold text-center mt-8'> Inventory</h1>
+             <h1 className='text-4xl text-red-600 font-bold text-center mt-8'> Inventory</h1>
+            
              <> 
             {
                 

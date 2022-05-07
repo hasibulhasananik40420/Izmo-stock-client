@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 const MyItems = () => {
         const [ user] = useAuthState(auth)
          
         //   console.log(user);
         const [myItem , setMyItem] = useState()
+        const navigate = useNavigate()
+       
 
-        useEffect( ()=>{
-            const email = user?.email
-            const url = `https://polar-castle-21999.herokuapp.com/myitems?email=${email}`
-            fetch(url)
-            .then(res=> res.json())
-            .then(data=> {
-                console.log(data);
-                setMyItem(data);
-                
-            })
-          },[])
+        useEffect( () =>{
+          const email = user?.email
+          fetch(`https://polar-castle-21999.herokuapp.com/myitems?email=${email}`, {
+              method: 'GET', 
+              headers:{
+                  authorization: `Bearer ${localStorage.getItem('accessToken')}`
+              }
+          })
+          .then(res => {
+              if(res.status === 401 || res.status===403){
+                  navigate('/login');
+              }
+              return res.json()
+          })
+          .then(data =>{
+              console.log(data);
+              setMyItem(data);
+          })
+      }, [])
+
+
          
           const handleDelete =(id)=>{
             const prceed = window.confirm('Are you sure to delete this item?')
