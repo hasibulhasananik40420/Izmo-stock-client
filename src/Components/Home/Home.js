@@ -10,7 +10,7 @@ const Home = () => {
     const navigate = useNavigate()
      
     const navigateToServiceDetail=id=>{
-       navigate(`/singleservice/${id}`)
+       navigate(`/inventory/${id}`)
     }
     const [review ,setReview] = useReview()
     const sixCart = review.slice(0,6)

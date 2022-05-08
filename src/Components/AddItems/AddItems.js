@@ -29,9 +29,9 @@ const AddItems = (e) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             toast('Product Update Successfully')
-            // e.target.reset()
+            e.target.reset()
         })
 
     }

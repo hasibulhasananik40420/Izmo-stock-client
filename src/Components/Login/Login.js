@@ -56,8 +56,6 @@ const Login = () => {
     //login 
     const handleLogin = event => {
         event.preventDefault()
-        
-
         fetch('https://polar-castle-21999.herokuapp.com/token', {
             method: 'POST',
             headers: {
@@ -72,10 +70,10 @@ const Login = () => {
             if(data.success){
                 localStorage.setItem('accessToken', data.accessToken);
                 signInWithEmailAndPassword(userInfo.email, userInfo.password)
-                naviagte(from, { replace: true })
+                // naviagte(from, { replace: true })
 
             }
-            console.log(data);
+            // console.log(data);
         })
 
     }
@@ -95,13 +93,12 @@ const Login = () => {
         .then(data =>{
             if(data.success){
                 localStorage.setItem('accessToken', data.accessToken);
-                // signInWithEmailAndPassword(userInfo.email, userInfo.password)
                 signInWithGoogle(userInfo.email, userInfo.password)
 
-                naviagte(from, { replace: true })
+                // naviagte(from, { replace: true })
 
             }
-            console.log(data);
+           
         })
     }
 
@@ -122,6 +119,7 @@ const Login = () => {
     const naviagte = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+  
     if (user) {
      naviagte(from, { replace: true })
     }

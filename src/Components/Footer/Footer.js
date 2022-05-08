@@ -113,7 +113,7 @@ const Footer = () => {
 
    <div class="text-center text-gray-700 p-4 mr-16">
     © 2022 Copyright:
-    <a class="text-gray-800" href="https://tailwind-elements.com/">Tailwind Elements</a>
+    <a class="text-gray-800" href="https://tailwind-elements.com/"> Izmo Stock </a>
   </div>
 </footer>
 

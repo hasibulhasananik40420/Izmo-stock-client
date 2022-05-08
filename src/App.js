@@ -26,7 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/offer" element={<Offers />} />
         <Route path="/singup" element={<SingUp />} />
-        <Route path="/singleservice/:id" element={
+        <Route path="/inventory/:id" element={
           <RequireAuth>
             <SingleService />
           </RequireAuth>

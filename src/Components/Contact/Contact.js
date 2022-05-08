@@ -12,14 +12,14 @@ const Contact = () => {
             </div>
             <div className='md:w-3/4 md:ml-10 ml-8'>
                 <h1 className='text-3xl text-white font-bold mt-8'>Twitter Feed</h1>
-                <p className='font-semibold mt-5 ml-4 text-white'>Check out our latest theme release 'Landscaping' - themeforest.net/item/landscapi…</p>
+                <p className='font-semibold mt-5 ml-4 text-white'>Check out our latest theme release - izmo stock.net/item/landscapi…</p>
                 <p  className='font-semibold mt-5 ml-4 text-white'>@MrSamHughes Probably the easiest way is to send an email to sales@themesuite.com, or through our ThemeForest profi… twitter.com/i/web/status/8…</p>
             </div>
             <div className='md:w-2/4 ml-8'>
                 <h1 className='text-3xl text-white font-bold mt-8'>Contact Us</h1>
-                <p className='font-semibold mt-5 ml-4 text-white'>Address: 1234 Street Name, City Name, AB</p>
-                <p className='font-semibold mt-5 ml-4 text-white'>Phone: 1-800-123-4567</p>
-                <p className='font-semibold mt-5 ml-4 text-white'>Email: sales@company.com</p>
+                <p className='font-semibold mt-5 ml-4 text-white'>Address: Bangladsh, Rajshahi, AB2</p>
+                <p className='font-semibold mt-5 ml-4 text-white'>Phone: 01790170749</p>
+                <p className='font-semibold mt-5 ml-4 text-white'>Email: anik@izmo.com</p>
             </div>
             
         </div>

@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useReview from '../../Hooks/useReview';
-import Spinner from '../Spinner/Spinner';
 
 const Services = () => {
     const [review ,setReview] = useReview([])
-    console.log(review);
-    //  const {name ,price ,description ,quantity ,suppliername , img, _id} = product
+    // console.log(review);
      const navigate = useNavigate()
      
      const navigateToServiceDetail=id=>{
-        navigate(`/singleservice/${id}`)
+        navigate(`/inventory/${id}`)
      }
 
      const handleDelete =(id)=>{
@@ -22,7 +20,7 @@ const Services = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 const remaining = review.filter(product => product._id !== id) 
                 setReview(remaining)
             })
